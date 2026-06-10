@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VISHV BOOK PUBLISHERS – Handwriting Work</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a2e;
+      --deep: #16213e;
+      --accent: #f5a623;
+      --gold: #ffcc44;
+      --green: #27ae60;
+      --white: #ffffff;
+      --soft: #f8f4ee;
+      --muted: #8a8a9a;
+      --card-bg: #ffffff;
+      --border: #e8e0d0;
+      --tg: #229ED9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--soft);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--deep) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 20px 16px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    header .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-family: Arial, sans-serif;
+      font-size: clamp(22px, 6vw, 38px);
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    header h1 span { color: var(--gold); }
+    header .tagline {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--accent);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .stat {
+      padding: 14px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat strong {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .stat span { font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── SECTION ── */
+    section { padding: 48px 16px; }
+    .section-title {
+      font-family: Arial, sans-serif;
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 800;
+      text-align: center;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--white); }
+    .steps { display: flex; flex-direction: column; gap: 20px; }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--soft);
+      border-radius: 14px;
+      padding: 20px;
+      border-left: 4px solid var(--accent);
+    }
+    .step-num {
+      background: var(--ink);
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step h3 { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .step p { font-size: 14px; color: #555; line-height: 1.5; }
+
+    /* ── PLANS ── */
+    .plans-bg { background: var(--soft); }
+    .plans-grid { display: flex; flex-direction: column; gap: 24px; }
+
+    .plan-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+    .plan-card.popular {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(245,166,35,0.25);
+    }
+    .popular-tag {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--accent);
+      color: var(--ink);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .plan-header {
+      background: linear-gradient(135deg, var(--ink), var(--deep));
+      color: var(--white);
+      padding: 24px 24px 20px;
+      text-align: center;
+    }
+    .plan-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .plan-days {
+      font-family: Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .plan-days span { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.6); }
+
+    .plan-salary {
+      font-family: Arial, sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+    .plan-salary small { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 400; }
+
+    .plan-body { padding: 20px 24px 24px; }
+
+    .plan-features { list-style: none; margin-bottom: 18px; }
+    .plan-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--ink);
+    }
+    .plan-features li:last-child { border-bottom: none; }
+    .plan-features li .icon { font-size: 16px; flex-shrink: 0; }
+    .plan-features li strong { font-weight: 700; }
+
+    .advance-box {
+      background: #eafaf1;
+      border: 1.5px solid #27ae60;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .advance-box .ab-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 4px; }
+    .advance-box .ab-text { font-size: 14px; color: #1a5c35; font-weight: 500; line-height: 1.5; }
+    .advance-box .ab-amount { font-family: Arial, sans-serif; font-size: 22px; font-weight: 800; color: var(--green); }
+
+    .fee-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--soft);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .fee-label { font-size: 13px; color: var(--muted); }
+    .fee-amount { font-family: Arial, sans-serif; font-size: 20px; font-weight: 800; color: var(--ink); }
+
+    .plan-cta {
+      display: block;
+      width: 100%;
+      background: var(--tg);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .plan-cta:hover { background: #1a89c0; transform: scale(1.01); }
+    .plan-cta svg { vertical-align: middle; margin-right: 6px; }
+
+    /* ── NOTE ── */
+    .note-section { background: var(--ink); color: var(--white); }
+    .note-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .note-box h3 { font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+    .note-box p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 8px; }
+    .note-box p:last-child { margin-bottom: 0; }
+    .note-box strong { color: var(--white); }
+
+    /* ── FOOTER CTA ── */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--tg) 0%, #1a7ab0 100%);
+      text-align: center;
+      padding: 48px 16px;
+      color: var(--white);
+    }
+    .footer-cta h2 {
+      font-family: Arial, sans-serif;
+      font-size: clamp(20px, 5vw, 30px);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .footer-cta p { font-size: 15px; opacity: 0.85; margin-bottom: 24px; }
+    .big-tg-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--tg);
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .big-tg-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.25); }
+
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--green);
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(min-width: 640px) {
+      .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="badge">✍️ Genuine Work From Home</div>
+    <h1>📚 VISHV BOOK <span>PUBLISHERS</span></h1>
+    <p class="tagline">Handwriting Work Opportunity – Earn From Home Daily</p>
+  </header>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <span class="ticker-inner">
+      ⚡ Limited Slots Available – Apply Now! &nbsp;|&nbsp; ✅ 1000+ Active Members Earning Daily &nbsp;|&nbsp; 💰 Advance Salary Within 15–20 Minutes &nbsp;|&nbsp; 📦 Free Home Delivery of Materials &nbsp;|&nbsp; ⭐ Trusted By Thousands Across India &nbsp;|&nbsp; ⚡ Limited Slots Available – Apply Now!
+    </span>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><strong>1000+</strong><span>Active Members</span></div>
+    <div class="stat"><strong>₹50L+</strong><span>Total Paid Out</span></div>
+    <div class="stat"><strong>4.9★</strong><span>User Rating</span></div>
+    <div class="stat"><strong>100%</strong><span>Genuine</span></div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-bg">
+    <div class="container">
+      <p class="section-title">📋 How It Works</p>
+      <p class="section-sub">3 simple steps to start earning</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Join Telegram Channel</h3>
+            <p>Click the Telegram button and join our official channel. Select the project that fits your schedule.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Register & Get Advance</h3>
+            <p>Pay the registration fee and receive <strong>50% advance salary within 15–20 minutes</strong>. Materials delivered to your door.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Complete & Get Full Payment</h3>
+            <p>Write pages, scan and submit. Receive remaining salary after successful project completion.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>Flexible & Weekly Payment</h3>
+            <p>Weekly payment available. Work from home at your own pace — no experience needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="plans-bg">
+    <div class="container">
+      <p class="section-title">🧾 Choose Your Salary Package</p>
+      <p class="section-sub">Select a plan and start earning today — slots are limited!</p>
+      <div class="plans-grid">
+
+        <!-- PLAN 1 -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-num">✨ PROJECT 1</div>
+            <div class="plan-days">7 DAYS <span>Project</span></div>
+            <div class="plan-salary">₹25,000 <small>/ project</small></div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon">📝</span> <span>Work: <strong>7 Pages Per Day</strong></span></li>
+              <li><span class="icon">📄</span> <span>Total Pages: <strong>49</strong></span></li>
+              <li><span class="icon">⏳</span> <span>Duration: <strong>7 Days</strong></span></li>
+              <li><span class="icon">📦</span> <span>Free Home Delivery</span></li>
+              <li><span class="icon">💸</span> <span>Weekly Payment Available</span></li>
+            </ul>
+            <div class="advance-box">
+              <div class="ab-label">⚡ Advance Salary</div>
+              <div class="ab-amount">₹12,500</div>
+              <div class="ab-text">Credited within <strong>15–20 minutes</strong> of registration</div>
+            </div>
+            <div class="fee-row">
+              <span class="fee-label">💳 Registration Fee</span>
+              <span class="fee-amount">₹499</span>
+            </div>
+            <a class="plan-cta" href="https://t.me/+ouo3WODSB8c4M2U1" target="_blank">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.157 14.48l-2.95-.924c-.64-.203-.654-.64.136-.953l11.52-4.44c.534-.194 1.001.13.699.085z"/></svg>
+              Apply on Telegram
+            </a>
+          </div>
+        </div>
+
+        <!-- PLAN 2 -->
+        <div class="plan-card popular">
+          <div class="popular-tag">🔥 MOST POPULAR</div>
+          <div class="plan-header">
+            <div class="plan-num">✨ PROJECT 2</div>
+            <div class="plan-days">10 DAYS <span>Project</span></div>
+            <div class="plan-salary">₹30,000 <small>/ project</small></div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon">📝</span> <span>Work: <strong>10 Pages Per Day</strong></span></li>
+              <li><span class="icon">📄</span> <span>Total Pages: <strong>100</strong></span></li>
+              <li><span class="icon">⏳</span> <span>Duration: <strong>10 Days</strong></span></li>
+              <li><span class="icon">📦</span> <span>Free Home Delivery</span></li>
+              <li><span class="icon">💸</span> <span>Weekly Payment Available</span></li>
+            </ul>
+            <div class="advance-box">
+              <div class="ab-label">⚡ Advance Salary</div>
+              <div class="ab-amount">₹15,000</div>
+              <div class="ab-text">Credited within <strong>15–20 minutes</strong> of registration</div>
+            </div>
+            <div class="fee-row">
+              <span class="fee-label">💳 Registration Fee</span>
+              <span class="fee-amount">₹799</span>
+            </div>
+            <a class="plan-cta" href="https://t.me/+ouo3WODSB8c4M2U1" target="_blank">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.157 14.48l-2.95-.924c-.64-.203-.654-.64.136-.953l11.52-4.44c.534-.194 1.001.13.699.085z"/></svg>
+              Apply on Telegram
+            </a>
+          </div>
+        </div>
+
+        <!-- PLAN 3 -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-num">✨ PROJECT 3</div>
+            <div class="plan-days">15 DAYS <span>Project</span></div>
+            <div class="plan-salary">₹35,000 <small>/ project</small></div>
+          </div>
+          <div class="plan-body">
+            <ul class="plan-features">
+              <li><span class="icon">📝</span> <span>Work: <strong>10 Pages Per Day</strong></span></li>
+              <li><span class="icon">📄</span> <span>Total Pages: <strong>150</strong></span></li>
+              <li><span class="icon">⏳</span> <span>Duration: <strong>15 Days</strong></span></li>
+              <li><span class="icon">📦</span> <span>Free Home Delivery</span></li>
+              <li><span class="icon">💸</span> <span>Weekly Payment Available</span></li>
+            </ul>
+            <div class="advance-box">
+              <div class="ab-label">⚡ Advance Salary</div>
+              <div class="ab-amount">₹17,500</div>
+              <div class="ab-text">Credited within <strong>15–20 minutes</strong> of registration</div>
+            </div>
+            <div class="fee-row">
+              <span class="fee-label">💳 Registration Fee</span>
+              <span class="fee-amount">₹999</span>
+            </div>
+            <a class="plan-cta" href="https://t.me/+ouo3WODSB8c4M2U1" target="_blank">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.157 14.48l-2.95-.924c-.64-.203-.654-.64.136-.953l11.52-4.44c.534-.194 1.001.13.699.085z"/></svg>
+              Apply on Telegram
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPORTANT NOTE -->
+  <section class="note-section">
+    <div class="container">
+      <div class="note-box">
+        <h3>📌 Important Information</h3>
+        <p>✅ After choosing any project and completing registration, you will receive <strong>50% advance salary within 15–20 minutes</strong>.</p>
+        <p>✅ Remaining payment will be provided after <strong>successful project completion</strong>.</p>
+        <p>⏳ <strong>Project Duration:</strong> 7 / 10 / 15 Days &nbsp;|&nbsp; 💸 <strong>Weekly Payment Available</strong></p>
+        <p>⚡ <strong>Limited Slots Available</strong> – Apply Now before slots fill up!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <h2>📲 Join Our Telegram Channel</h2>
+    <p>Click below to apply and start earning from home today!</p>
+    <a class="big-tg-btn" href="https://t.me/+ouo3WODSB8c4M2U1" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.014 9.49c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.157 14.48l-2.95-.924c-.64-.203-.654-.64.136-.953l11.52-4.44c.534-.194 1.001.13.699.085z"/></svg>
+      JOIN TELEGRAM NOW – FREE
+    </a>
+  </div>
+
+  <footer>© 2026 Vishv Book Publishers. All rights reserved.</footer>
+
+</body>
+</html>
